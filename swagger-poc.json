@@ -1,0 +1,111 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "FAMA Basic Authentication",
+    "version" : "3.0",
+    "title" : "Fama Basic Authentication",
+    "termsOfService" : "https://fama.io/privacy",
+    "contact" : {
+      "url" : "https://developer.fama.io",
+      "email" : "admin@developer.fama.io"
+    }
+  },
+  "host" : "sandbox-api.fama.io",
+  "basePath" : "/api",
+  "schemes" : [ "https" ],
+  "produces" : [ "application/json" ],
+  "security" : [ {
+    "basicAuth" : [ ]
+  } ],
+  "paths" : {
+    "/oauth/token" : {
+      "post" : {
+        "summary" : "Authenticate user",
+        "description" : "Retrieves a client token which is valid for 45 days. Once the token has expired a new one can be retrieved at this same endpoint.",
+        "parameters" : [ {
+          "name" : "grant_type",
+          "in" : "query",
+          "description" : "Type of token",
+          "required" : true,
+          "type" : "string",
+          "default" : "client_credentials"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "examples" : {
+              "application/json" : {
+                "access_token" : "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+                "token_type" : "bearer",
+                "expires_in" : 0,
+                "scope" : "read trust write"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/Authentication"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "examples" : {
+              "application/json" : {
+                "timestamp" : 1574789454082,
+                "status" : 401,
+                "error" : "Unauthorized",
+                "message" : "Full authentication is required to access this resource",
+                "path" : "/api/oauth/token"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "basicAuth" : {
+      "type" : "basic"
+    }
+  },
+  "definitions" : {
+    "Authentication" : {
+      "type" : "object",
+      "properties" : {
+        "access_token" : {
+          "type" : "string"
+        },
+        "token_type" : {
+          "type" : "string"
+        },
+        "expires_in" : {
+          "type" : "integer"
+        },
+        "scope" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Error" : {
+      "type" : "object",
+      "properties" : {
+        "timestamp" : {
+          "type" : "integer"
+        },
+        "status" : {
+          "type" : "integer"
+        },
+        "error" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "path" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
