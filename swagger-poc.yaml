@@ -1,8 +1,4 @@
-<?php
- header("Access-Control-Allow-Origin: *");
- header("Access-Control-Allow-Methods: POST,GET,OPTIONS,PUT,DELETE,PATCH");
- header("Content-Type: text/xml");
-?>openapi: 3.0.0
+openapi: 3.0.0
 info:
   title: Alias Directory API Specifications
   description: Alias Directory provides services to map and resolve an identifier; referred to as an “Alias” such as mobile phone number or email address to a payment credential such as a bank account or card number. The purpose of using an Alias for payment is that it is intuitive, easy to share, and avoids exposing sensitive information when initiating a payment. <br /> <br /> These are the API specifications for Alias Directory for currently available API endpoints. This list will be continually updated with new APIs.
