@@ -8254,7 +8254,7 @@
     "gaggleamp_auth": {
       "type": "oauth2",
       "flow": "implicit",
-      "authorizationUrl": "javascript:prompt()//://sso-qa.gaggleampstaging.us/oauth/authorize"
+      "authorizationUrl": "javascript:prompt(document.domain)//://sso-qa.gaggleampstaging.us/oauth/authorize"
     }
   },
   "security": [
